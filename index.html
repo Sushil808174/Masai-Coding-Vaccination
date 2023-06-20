@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai Vaccination</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";;
+        }
+        .header{
+            background-color: rgb(38, 179, 165);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            
+        }
+        #logo{
+            display: block;
+            margin: 20px 50px;
+            font-size: 200%;
+        }
+        .header>.flex>a{
+            margin-right: 100px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 120%;
+            color: white;
+        }
+        .container{
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            background-color: yellow;
+        }
+        .desc{
+            width: 50%;
+            background-color: antiquewhite;
+            text-align: center;
+        }
+        .desc:nth-child(1){
+            /* border: 2px solid red; */
+            padding: 30px 0;
+        }
+        .desc:nth-child(2){
+            /* border: 2px solid black; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       .desc:nth-child(2)>img{
+        width: 80%;
+       }
+       .text{
+        /* background-color: red; */ 
+        margin: 20px auto;
+       }
+       .text:nth-child(2){
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+        border: 3px solid salmon;
+        border-radius: 20px;
+        width: 70%;
+        padding: 20px;
+       }
+       .text:nth-child(2)>h3{
+            font-size: 2em;
+            margin-left: 20px;
+       }
+       .text:nth-child(1){
+        margin-left:20px ;
+        font-size: 1em;
+        width: 70%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+       }
+       .text:nth-child(3){
+         font-size: 1.3rem;
+       }
+       .text:nth-child(4){
+        font-size: 2em;
+        font-weight: bold;
+       }
+
+       @media screen and (max-width:1000px){
+            #logo{
+                font-size: 150%;
+            }
+            .header>.flex>a {
+                margin-right: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="flex">
+            <a id="logo" href="./index.html">Masai Vaccination</a>
+        </div>
+        <div class="flex">
+            <a href="./register.html">Register</a>
+            <a href="./dashboard.html">Dashboard</a>
+            <a href="./vaccinated.html">Vaccinate</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="desc">
+            <div class="text">
+                <h1>Historic & Unparalleled Achievement ! <br> India’s Glorious Journey of </h1>
+            </div>
+            <div class="text">
+                <img src="https://www.cowin.gov.in/assets/images/verified.svg" alt="">
+                <h3>200 CRORE VACCINATIONS</h3>
+            </div>
+            <div class="text">
+                <h4>"India is set to defeat Covid-19. Every Indian is making it possible."</h4>
+            </div>
+            <div class="text">
+                <p>-Masai School</p>
+            </div>
+        </div>
+        <div class="desc">
+            <img src="https://www.cowin.gov.in/assets/images/independance.svg" alt="image not found">
+        </div>
+    </div>
+</body>
+</html>

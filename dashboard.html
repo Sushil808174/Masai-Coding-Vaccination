@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .header{
+            background-color: rgb(38, 179, 165);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+        #logo{
+            display: block;
+            margin: 20px 50px;
+            font-size: 200%;
+        }
+        .header>.flex>a{
+            margin-right: 100px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 120%;
+            color: white;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead{
+            background-color: rgb(160, 234, 234);
+        }
+        thead th{
+            height: 50px;
+            font-size: 1.4em;
+        }
+        td,th{
+            text-align: center;
+            height: 40px;
+            /* padding: 13px; */
+            border: 2px solid teal;
+        }
+        tbody>tr:nth-child(even){
+            background-color: #f8ebeb;
+        }
+        tbody>tr:nth-child(odd){
+            background-color: white;
+        }
+        #deleteBtn{
+            background-color: rgb(225, 70, 70);
+            width: 100%;
+            height: 100%;
+            color: white;
+            font-size: 1.4em;
+            border: none;
+        }
+        #deleteBtn:hover{
+            background-color: red;
+        }
+        #vaccinateBtn{
+            background-color: rgb(116, 206, 116);
+            color: white;
+            height: 100%;
+            width: 100%;
+            font-size: 1.4em;
+            border: none;
+        }
+        #vaccinateBtn:hover{
+            background-color: green;
+        }
+
+        .filter,#ft-by-vac,#ft-by-pri,#sortbyage,.DESN{
+            /* background-color: red; */
+            margin: 10px 0;
+            /* width: 100%; */
+            font-size: 1.2em;
+        }
+        .filter{
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+        #sortbyage{
+            margin: 0 20px;
+        }
+        #sortbyage:hover{
+            background-color: rgba(186, 225, 225, 0.63);
+        }
+        #sortbyage,#ft-by-pri,#ft-by-vac{
+            padding: 7px 10px;
+            border: none;
+            border-radius: 20px;
+        }
+        #ft-by-pri,#ft-by-vac{
+            background-color: rgb(181, 218, 218);
+        }
+
+        @media screen and (max-width:1000px){
+            #logo{
+                font-size: 150%;
+            }
+            .header>.flex>a {
+                margin-right: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="flex">
+            <a id="logo" href="./index.html">Masai Vaccination</a>
+        </div>
+        <div class="flex">
+            <a href="./register.html">Register</a>
+            <a href="./dashboard.html">Dashboard</a>
+            <a href="./vaccinated.html">Vaccinate</a>
+        </div>
+    </div>
+
+    <div class="filter">
+        <label for="" class="DESN">Filter By Vaccine</label>
+        <select name="vaccine" id="ft-by-vac">
+            <option value="Covishield">Covishield</option>
+            <option value="Covaxin ">Covaxin </option>
+            <option value="Sputnik">Sputnik</option>
+        </select>
+
+        <button id="sortbyage">Sort By Age</button>
+
+        <label for="" class="DESN">Filter By Priority</label>
+        <select name="priority" id="ft-by-pri">
+            <option value="p0">p0</option>
+            <option value="p1">p1 </option>
+            <option value="p2">p2</option>
+            <option value="p3">p3</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <table border="1">
+                <thead>
+                    <th>Unique ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Designation</th>
+                    <th>Priority</th>
+                    <th>Vaccine</th>
+                    <th>OTP</th>
+                    <th>Delete</th>
+                    <th>Vaccinate</th>
+                </thead>
+                <tbody id="tbody">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+     let registerData=JSON.parse(localStorage.getItem("registerData")) || [];
+     let VaccinatedValue=[]
+     let filterByVac=document.getElementById("ft-by-vac");
+     let sortByAge=document.getElementById("sortbyage");
+     let filterByPro=document.getElementById("ft-by-pri");
+     let tbody=document.getElementById("tbody");
+
+     function displayData(data){
+        tbody.innerHTML=null;
+
+        data.forEach((element,index) => {
+            let tr=document.createElement("tr");
+            let tbData1=document.createElement("td");
+            tbData1.innerText=element.uniqueId;
+            let tbData2=document.createElement("td");
+            tbData2.innerText=element.userName;
+            let tbData3=document.createElement("td");
+            tbData3.innerText=element.userAge;
+            let tbData4=document.createElement("td");
+            tbData4.innerText=element.designation;
+            let tbData5=document.createElement("td");
+            tbData5.innerText=element.priority;
+            let tbData6=document.createElement("td");
+            tbData6.innerText=element.vaccine;
+
+            let tbData7=document.createElement("td");
+            let otpNum=Math.floor(Math.random()*9999) + 1;
+            tbData7.innerText=otpNum;
+
+            let tbData8=document.createElement("td");
+            let deletebtn=document.createElement("button");
+            deletebtn.setAttribute("id","deleteBtn")
+            deletebtn.innerText="Delete";
+            tbData8.append(deletebtn)
+            
+            let tbData9=document.createElement("td");
+            let Vaccinatebtn=document.createElement("button");
+            Vaccinatebtn.setAttribute("id","vaccinateBtn")
+            Vaccinatebtn.innerText="Vaccinate";
+            tbData9.append(Vaccinatebtn)
+            
+            tr.append(tbData1,tbData2,tbData3,tbData4,tbData5,tbData6,tbData7,tbData8,tbData9)
+            tbody.append(tr)
+
+            deletebtn.addEventListener("click", ()=>{
+                registerData.splice(index, 1)
+                localStorage.setItem("registerData", JSON.stringify(registerData));
+                displayData(registerData)
+            })
+
+            Vaccinatebtn.addEventListener("click", ()=>{
+                let OTP=Number(prompt("Enter the OTP"));
+                if(OTP==otpNum){
+                    alert(`${element.uniqueId} Added to Queue`)
+                    setTimeout(()=>{
+                        alert(`Vaccinating ${element.vaccine}`)
+                    },5000)
+                    setTimeout(()=>{
+                        alert(`${element.userName} Vaccinated`)
+                    },10000)
+                    VaccinatedValue.push(element);
+                    localStorage.setItem("vaccinated", JSON.stringify(VaccinatedValue));
+                    registerData.splice(index, 1);
+                    localStorage.setItem("registerData", JSON.stringify(registerData));
+                    displayData(registerData)
+                }else if(!OTP){
+                    alert("Please Enter the OTP!")
+                }else{
+                    alert("OTP is not valid!")
+                }
+                
+            })
+        });
+     }
+     displayData(registerData)
+
+     filterByVac.addEventListener("change", ()=>{
+        let filterData=registerData.filter((element,index)=>{
+            return filterByVac.value==element.vaccine
+        })
+
+        displayData(filterData)
+     })
+
+     sortByAge.addEventListener("click",()=>{
+        let sortValue=registerData.sort((a,b)=>a.userAge-b.userAge)
+        displayData(sortValue)
+     })
+
+     filterByPro.addEventListener("change", ()=>{
+        let filterData=registerData.filter((element,index)=>{
+            return filterByPro.value==element.priority;
+        })
+
+        displayData(filterData)
+     })
+
+
+</script>
+</html>
